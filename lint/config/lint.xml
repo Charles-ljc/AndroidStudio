@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!--https://developer.android.google.cn/studio/write/lint#pref-->
+    <!-- 只能影响当前项目，放在整个项目根目录下无效，文件名必须是 lint.xml -->
+    <!-- 如果通过gradle lint命令执行检查，可以通过 gradle 配置 lintOptions.lintConfig 修改文件名，但编辑器里没有效果-->
+    <!-- list of issues to configure -->
+    <!-- Disable the given check in this project -->
+    <issue id="ContentDescription" severity="ignore" />
+
+    <!-- Change the severity of hardcoded strings to "error" -->
+    <issue id="HardcodedText" severity="error" />
+
+    <!-- Ignore the HardcodedText issue in the specified file -->
+    <issue id="HardcodedText">
+        <!--一定要加xml-->
+        <ignore path="res/layout/lint_xml_ignore_path.xml" />
+    </issue>
+</lint>
