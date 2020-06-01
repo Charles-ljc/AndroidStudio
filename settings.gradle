@@ -1,3 +1,4 @@
+include ':annotation'
 include ':Gradle'
 include ':Gradle:android'
 include ':library'
