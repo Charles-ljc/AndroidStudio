@@ -3,5 +3,6 @@ include ':Gradle:android'
 include ':library'
 include ':library:aar'
 include ':library:privateres'
+include ':lint'
 include ':app'
 rootProject.name = "AndroidStudio"

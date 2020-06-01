@@ -12,10 +12,12 @@ android {
     productFlavors {
         gradle { dimension 'module' }
         library { dimension 'module' }
+        lints { dimension 'module' }
     }
 }
 
 dependencies {
     gradleImplementation project(path: ':Gradle')
     libraryImplementation project(path: ':library')
+    lintsImplementation project(path: ':lint')
 }
