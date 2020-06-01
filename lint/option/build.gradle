@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion compile_sdk
+
+    // https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.LintOptions.html
+    // 要通过gradle/verification/lint 命令才能看到效果；Analyze > Inspect Code 或 编辑器都没有效果。
+    lintOptions {
+        // https://developer.android.google.cn/studio/write/lint#gradle
+        // Turns off checks for the issue IDs you specify.
+        disable 'HardcodedText'
+        // Turns on checks for the issue IDs you specify. These checks are in
+        // addition to the default lint checks.
+        enable 'SimpleDateFormat'
+        // To enable checks for only a subset of issue IDs and ignore all others,
+        // list the issue IDs with the 'check' property instead. This property overrides
+        // any issue IDs you enable or disable using the properties above.
+        // check 'HardcodedText'
+        // If set to true, turns off analysis progress reporting by lint.
+        quiet true
+        // if set to true (default), stops the build if errors are found.
+        abortOnError false
+        // if true, only report errors.
+        ignoreWarnings true
+
+        // 控制台打印信息
+        textReport true
+        textOutput 'stdout'
+
+        // 添加lint.xml配置
+        lintConfig file("default-lint.xml")
+
+        // https://developer.android.google.cn/studio/write/lint#snapshot
+        // 执行 Analyze > Inspect Code 后会基于当前问题自动创建 lint-baseline.xml。
+        // 此后，lint 工具仅读取该文件以确定基准，以便只报告新问题。
+        // 如果要创建新基准，请手动删除该文件并再次运行 lint 以重新创建它。
+        baseline file("lint-baseline.xml")
+    }
+}

@@ -5,5 +5,6 @@ include ':library:aar'
 include ':library:privateres'
 include ':lint'
 include ':lint:config'
+include ':lint:option'
 include ':app'
 rootProject.name = "AndroidStudio"

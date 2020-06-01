@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues by="lint 4.0" format="5">
+
+    <issue id="SimpleDateFormat"
+        message="To get local formatting use `getDateInstance()`, `getDateTimeInstance()`, or `getTimeInstance()`, or use `new SimpleDateFormat(String template, Locale locale)` with for example `Locale.US` for ASCII dates.">
+        <location file="src/main/java/com/android/lint/option/Code.kt" line="5" />
+    </issue>
+
+</issues>

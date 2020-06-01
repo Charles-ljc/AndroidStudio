@@ -7,4 +7,5 @@ android {
 
 dependencies {
     implementation project(path: ':lint:config')
+    implementation project(path: ':lint:option')
 }
