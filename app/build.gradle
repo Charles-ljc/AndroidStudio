@@ -7,4 +7,13 @@ android {
         minSdkVersion min_sdk
         targetSdkVersion target_sdk
     }
+
+    flavorDimensions 'module'
+    productFlavors {
+        library { dimension 'module' }
+    }
+}
+
+dependencies {
+    libraryImplementation project(path: ':library')
 }
