@@ -1,3 +1,4 @@
+include ':Gradle'
 include ':library'
 include ':library:aar'
 include ':library:privateres'
