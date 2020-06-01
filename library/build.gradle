@@ -4,3 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion compile_sdk
 }
+
+dependencies {
+    implementation project(path: ':library:aar')
+}
