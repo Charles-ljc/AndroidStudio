@@ -3,4 +3,14 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion compile_sdk
+
+    defaultConfig {
+        minSdkVersion min_sdk
+    }
+}
+
+dependencies {
+    // 添加 annotation 依赖项不会为相应库的任何下游用户引入依赖项。
+    implementation "androidx.annotation:annotation:$annotation_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
