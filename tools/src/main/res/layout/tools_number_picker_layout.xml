@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--https://developer.android.google.cn/studio/write/tool-attributes#toolsminvalue_toolsmaxvalue-->
+<NumberPicker xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:maxValue="10"
+    tools:minValue="1" />

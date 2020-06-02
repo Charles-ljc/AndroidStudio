@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--https://developer.android.google.cn/studio/write/tool-attributes#resource_shrinking_attributes-->
+<!--不能放在values目录下，可放在其他目录下，推荐raw-->
+<!--保留tools_include_layout，因tools_include_layout引用tools_include_show_in_layout，故tools_include_show_in_layout也会保留-->
+<!--保留tools_layout，但discard配置了同一个值，故不保留-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:discard="@layout/tools_layout"
+    tools:keep="@layout/tools_include_layout,@layout/tools_layout"
+    tools:shrinkMode="strict" />

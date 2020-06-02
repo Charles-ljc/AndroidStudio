@@ -1,0 +1,15 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        minSdkVersion min_sdk
+    }
+}
+
+dependencies {
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "androidx.drawerlayout:drawerlayout:$drawerlayout_version"
+}

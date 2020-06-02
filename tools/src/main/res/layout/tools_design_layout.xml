@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--https://developer.android.google.cn/studio/write/tool-attributes#tools_instead_of_android-->
+<!--每个设计时属性都用属性名称旁边的扳手图标进行指示，以便与同名的真实属性区分开。-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <!--tools在预览时会覆盖对应的 android 属性-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Real Text"
+        tools:text="HardcodedText" />
+
+    <!--将某属性设置为仅用于布局预览。-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Visible Default"
+        tools:visibility="invisible" />
+</LinearLayout>

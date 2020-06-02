@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--https://developer.android.google.cn/studio/write/tool-attributes#toolscontext-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ToolsActivity">
+
+    <!--了解相应 Activity 的布局主题-->
+
+    <!--快速修复创建 onClick-->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick" />
+</LinearLayout>

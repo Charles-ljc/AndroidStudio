@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="zh">
+    <!--https://developer.android.google.cn/studio/write/tool-attributes#toolslocale-->
+    <string name="tools_locale_resource">默认语言是中文</string>
+</resources>
