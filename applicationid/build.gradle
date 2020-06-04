@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        applicationId "com.android.application.id"
+        minSdkVersion min_sdk
+        // 修改测试应用的application id，apk位置 /build/outputs/apk/androidTest
+        testApplicationId "com.android.test.id"
+    }
+
+    flavorDimensions 'flavor'
+    productFlavors {
+        free {
+            dimension "flavor"
+            applicationIdSuffix ".free"
+        }
+        pro {
+            dimension "flavor"
+            applicationIdSuffix ".pro"
+        }
+    }
+
+    buildTypes {
+        release {
+            applicationIdSuffix ".release"
+        }
+        debug {
+            applicationIdSuffix ".debug"
+        }
+    }
+    //  Gradle 会在产品变种后面应用构建类型配置，因此application id 为 com.android.application.id.free.debug
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    androidTestImplementation "androidx.test.ext:junit:$junitx_version"
+}

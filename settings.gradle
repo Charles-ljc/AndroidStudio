@@ -1,3 +1,5 @@
+
+// Library Module
 include ':annotation'
 include ':Gradle'
 include ':Gradle:android'
@@ -9,4 +11,6 @@ include ':lint:config'
 include ':lint:option'
 include ':tools'
 include ':app'
+// Application Module
+include ':applicationid'
 rootProject.name = "AndroidStudio"
