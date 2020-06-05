@@ -15,4 +15,6 @@ include ':app'
 include ':applicationid'
 include ':buildtype'
 include ':buildtype:btlibrary'
+include ':productflavor'
+include ':productflavor:pflibrary'
 rootProject.name = "AndroidStudio"

@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion compile_sdk
+
+    // tier 仅包含 demo 和 paid 变种，不包含应用的 free 变种
+    flavorDimensions 'tier', 'minApi'
+    productFlavors {
+        paid {
+            dimension 'tier'
+        }
+        demo {
+            dimension 'tier'
+        }
+        minApi18 {
+            dimension 'minApi'
+        }
+        minApi23 {
+            dimension 'minApi'
+        }
+    }
+}

@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion compile_sdk
+
+    // https://developer.android.google.cn/studio/build/dependencies#resolve_matching_errors
+    defaultConfig {
+        minSdkVersion min_sdk
+        // Specifies a sorted list of flavors that the plugin should try to use from
+        // a given dimension. The following tells the plugin that, when encountering
+        // a dependency that includes a "minApi" dimension, it should select the
+        // "minApi18" flavor. You can include additional flavor names to provide a
+        // sorted list of fallbacks for the dimension.
+        missingDimensionStrategy 'minApi', 'minApi18', 'minApi23'
+    }
+
+    flavorDimensions 'tier'
+    productFlavors {
+        paid {
+            dimension 'tier'
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-paid"
+            // Because the dependency already includes a "paid" flavor in its
+            // "tier" dimension, you don't need to provide a list of fallbacks
+            // for the "paid" flavor.
+        }
+        free {
+            dimension 'tier'
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+            // 应用包含库依赖项不包含的flavors，使用 matchingFallbacks
+            // 不要在 defaultConfig 里配置 matchingFallbacks
+            // Specifies a sorted list of fallback flavors that the plugin
+            // should try to use when a dependency's matching dimension does
+            // not include a "free" flavor. You may specify as many
+            // fallbacks as you like, and the plugin selects the first flavor
+            // that's available in the dependency's "tier" dimension.
+            matchingFallbacks = ['demo', 'trial']
+            // 库依赖项包含应用不包含的 flavorDimension ，使用 missingDimensionStrategy
+            // 此处配置将覆盖 defaultConfig 中的配置
+            // 如果存在多个 flavorDimension ，每个 flavorDimension 写一列
+            // You can override the default selection at the product flavor
+            // level by configuring another missingDimensionStrategy property
+            // for the "minApi" dimension.
+            missingDimensionStrategy 'minApi', 'minApi23', 'minApi18'
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation project(path: ':productflavor:pflibrary')
+}
