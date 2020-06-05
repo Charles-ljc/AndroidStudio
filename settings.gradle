@@ -13,4 +13,6 @@ include ':tools'
 include ':app'
 // Application Module
 include ':applicationid'
+include ':buildtype'
+include ':buildtype:btlibrary'
 rootProject.name = "AndroidStudio"

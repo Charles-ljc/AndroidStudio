@@ -1,0 +1,30 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        minSdkVersion min_sdk
+    }
+
+    buildTypes {
+        debug {}
+        release {}
+        staging {
+            initWith debug
+            // https://developer.android.google.cn/studio/build/dependencies#resolve_matching_errors
+            // 应用包含库依赖项不包含的版本类型
+            // Specifies a sorted list of fallback build types that the
+            // plugin should try to use when a dependency does not include a
+            // "staging" build type. You may specify as many fallbacks as you
+            // like, and the plugin selects the first build type that's
+            // available in the dependency.
+            matchingFallbacks = ['debug', 'qa', 'release']
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':buildtype:btlibrary')
+}
