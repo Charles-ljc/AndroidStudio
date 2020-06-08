@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+// 需要导入 OutputFile
+import com.android.build.OutputFile
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        minSdkVersion min_sdk
+        versionCode 1
+    }
+
+    // https://developer.android.google.cn/studio/build/configure-apk-splits
+    splits {
+
+        // Configures multiple APKs based on screen density.
+        density {
+
+            // Configures multiple APKs based on screen density.
+            enable true
+
+            // Specifies a list of screen densities Gradle should not create multiple APKs for.
+            exclude "ldpi", "xxhdpi", "xxxhdpi"
+
+            // Specifies a list of compatible screen size settings for the manifest.
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+
+            // 始终会生成一个包含适用于所有屏幕密度的代码和资源的通用 APK。
+        }
+
+        // Configures multiple APKs based on ABI.
+        abi {
+
+            // Enables building multiple APKs per ABI.
+            enable true
+
+            // By default all ABIs are included, so use reset() and include to specify that we only
+            // want APKs for x86 and x86_64.
+
+            // Resets the list of ABIs that Gradle should create APKs for to none.
+            reset()
+
+            // Specifies a list of ABIs that Gradle should create APKs for.
+            include "x86", "x86_64"
+
+            // Specifies that we want to also generate a universal APK that includes all ABIs.
+            universalApk true
+        }
+    }
+
+    // 版本控制
+    def abiCodes = ['armeabi-v7a': 1, x86: 2, x86_64: 3]
+
+    applicationVariants.all { variant ->
+
+        // Assigns a different version code for each output APK other than the universal APK.
+        variant.outputs.each { output ->
+
+            // Stores the value of abiCodes that is associated with the ABI for this variant.
+            // Determines the ABI for this variant and returns the mapped value.
+            def baseAbiVersionCode = abiCodes.get(output.getFilter(OutputFile.ABI))
+
+            // Because abiCodes.get() returns null for ABIs that are not mapped by abiCodes,
+            // the following code does not override the version code for universal APKs.
+            // However, because we want universal APKs to have the lowest version code,
+            // this outcome is desirable.
+            if (baseAbiVersionCode != null) {
+
+                // Assigns the new version code to versionCodeOverride, which changes the version code
+                // for only the output APK, not for the variant itself. Skipping this step simply
+                // causes Gradle to use the value of variant.versionCode for the APK.
+                output.versionCodeOverride = baseAbiVersionCode * 1000 + variant.versionCode
+            }
+        }
+    }
+}

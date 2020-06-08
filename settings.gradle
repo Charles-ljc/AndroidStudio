@@ -18,4 +18,5 @@ include ':buildtype:btlibrary'
 include ':buildvariant'
 include ':productflavor'
 include ':productflavor:pflibrary'
+include ':split'
 rootProject.name = "AndroidStudio"
