@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.manifest.placeholder">
+
+    <!-- https://developer.android.google.cn/studio/build/manifest-build-variables -->
+    <application>
+        <meta-data
+            android:name="placeholder_inner"
+            android:value="${placeholder_inner_value}" />
+
+        <meta-data
+            android:name="placeholder_outer"
+            android:value="${placeholder_outer_value}" />
+
+        <meta-data
+            android:name="placeholder_application_id"
+            android:value="${applicationId}" />
+    </application>
+</manifest>

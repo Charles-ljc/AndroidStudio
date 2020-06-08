@@ -1,0 +1,17 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        minSdkVersion min_sdk
+
+        manifestPlaceholders = [placeholder_outer_value: "outer"]
+    }
+
+}
+
+dependencies {
+    implementation project(path: ':manifest:placeholder')
+}

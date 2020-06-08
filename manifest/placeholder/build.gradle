@@ -1,0 +1,9 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        manifestPlaceholders = [placeholder_inner_value: "inner"]
+    }
+}
