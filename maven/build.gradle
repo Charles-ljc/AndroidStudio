@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        minSdkVersion min_sdk
+        versionName "1.1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation project(path: ':maven:aar')
+}
+
+afterEvaluate {
+    // 使用 publish 命令，生成目录：build/mavenLocal
+    // 生成 zip 压缩包，包含 apk，mapping.txt，output.json
+    def group = "com.android.maven"
+    def artifact = "apk"
+    def ver = android.defaultConfig.versionName
+    def repository = "$buildDir/mavenLocal"
+
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // The following applies a component to this publication
+                // which results in publishing an app bundle.
+                // 必须添加_apk后缀
+                from components.release_apk
+
+                groupId = group
+                artifactId = artifact
+                version = ver
+            }
+            debug(MavenPublication) {
+                // The following applies a component to this publication
+                // which results in publishing APKs in a ZIP file.
+                from components.debug_apk
+
+                groupId = group
+                artifactId = artifact + "-debug"
+                version = ver
+            }
+        }
+        repositories {
+            maven {
+                url = repository
+            }
+        }
+    }
+}
